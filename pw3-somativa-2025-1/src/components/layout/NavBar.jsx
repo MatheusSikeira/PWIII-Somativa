@@ -23,6 +23,8 @@ const NavBar = ()=>{
                         <li className={style.item}>LISTAR LIVROS</li>
                     </Link>
 
+                    
+
                 </ul>
             </nav>
             <Outlet/>

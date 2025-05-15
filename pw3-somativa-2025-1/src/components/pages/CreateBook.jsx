@@ -1,7 +1,7 @@
 //Classes
 import React, {useState, useEffect} from "react";
-import style from "./createBook.module.css";
 import { useNavigate } from "react-router-dom";
+import style from "./createBook.module.css";
 
 //Objetos
 import Input from "../form/Input.jsx";
@@ -10,18 +10,18 @@ import Button from "../form/Button.jsx";
 
 const CreateBook = () => {
 
-    /* CRIA A ESTRUTURA DE STATE PARA OS DADOS DE LIVRO*/
+    /* CRIA A ESTRUTURA DE STATE PARA OS DADDOS DE LIVRO*/
 
     const [livro, setLivro] = useState({});
 
     const [categories, setCategories] = useState([]);
 
+    const navigate = useNavigate();
+
     function salvarInput(event){
         setLivro({...livro, [event.target.name] : event.target.value});
         console.log(livro);
     }
-    /* CRIA UM OBJETO DE useNavigate */
-    const navigate = useNavigate();
 
     function salvarSelect(event){
         setLivro({...livro, cod_categoria: event.target.options[event.target.selectedIndex].value,"categoria": event.target.options[event.target.selectedIndex].text})
@@ -49,7 +49,7 @@ const CreateBook = () => {
             }).catch((error)=>{console.log(error)})
             },[])
 
-            
+
     function insertBook(){
         fetch("http://localhost:5000/inserirLivro", {
             method: "POST",
@@ -64,7 +64,7 @@ const CreateBook = () => {
             resp.json()
         ).then((res)=>{
             console.log("Response: " + res)
-            navigate('/listBook')
+            navigate('/listBook');
         }).catch((error)=>{
             console.log("ERROR: " + error)
         })
